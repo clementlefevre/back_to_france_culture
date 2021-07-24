@@ -11,9 +11,9 @@ import argparse
 import sqlalchemy
 
 
-DEVICE_PATH = "/media/yvette/EC95-4FBB/Music/"
-GPODDER_DOWNLOADS = "/home/yvette/gPodder/Downloads"
-db_name = "/home/yvette/gPodder/Database"
+DEVICE_PATH = "E:\\Music\\" # "/media/yvette/EC95-4FBB/Music/"
+GPODDER_DOWNLOADS = "D:\\Users\\BKU\\clementlefevre\\Documents\\gPodder\\Downloads" #"/home/yvette/gPodder/Downloads"
+db_name = "D:\\Users\\BKU\\clementlefevre\\Documents\\gPodder\\Database"
 
 
 
