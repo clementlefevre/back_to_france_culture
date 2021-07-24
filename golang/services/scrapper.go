@@ -22,7 +22,7 @@ func DownloadAndSaveToFileAll(allUrls []string, ROOT_FOLDER string) {
 	// start the workers, we limit the workers to 5
 	for t := 1; t < 5; t++ {
 		wg.Add(1)
-		go GetPodcast(ch, &wg)
+		go GetPodcast(ch, &wg, ROOT_FOLDER)
 	}
 
 	// push the lines to the queue channel for processing
@@ -37,7 +37,7 @@ func DownloadAndSaveToFileAll(allUrls []string, ROOT_FOLDER string) {
 
 }
 
-func GetPodcast(ch chan string, wg *sync.WaitGroup) {
+func GetPodcast(ch chan string, wg *sync.WaitGroup, ROOT_FOLDER string) {
 	defer wg.Done()
 
 	for url := range ch {
