@@ -17,4 +17,4 @@ the scripts downloads the mp3 file linked in the url, and copy them in the local
 ### Sync with external device
 you can also sync the downloaded files with your local devices :
 
->`go run cmd/main.go --url https://www.franceculture.fr/emissions/benito-mussolini-un-portrait/5-benito-mussolini-luomo-vuoto-lhomme-vide --dest e:/Music`
+>`go run cmd/main.go --url https://www.franceculture.fr/emissions/benito-mussolini-un-portrait/5-benito-mussolini-luomo-vuoto-lhomme-vide --sync e:/Music`
