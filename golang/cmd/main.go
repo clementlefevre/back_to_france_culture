@@ -3,6 +3,7 @@ package main
 import (
 	"backtofranceculture/downloader/services"
 	"flag"
+	"log"
 	"strings"
 )
 
@@ -13,8 +14,12 @@ var ROOT_DEVICE = "e:/Music"
 func main() {
 
 	url := flag.String("url", "", "urls separated by coma")
+	sync_folder := flag.String("sync", "", "root folder of your external device")
+
 	file_with_urls := flag.String("file", "", "file with urls separated by coma")
 	flag.Parse()
+
+	log.Printf("Using %s as destination fodler", *sync_folder)
 
 	services.CreateFolder(ROOT_FOLDER)
 
@@ -29,10 +34,13 @@ func main() {
 		}
 	}
 
-	services.DownloadAndSaveToFileAll(allUrls, ROOT_FOLDER)
+	//services.DownloadAndSaveToFileAll(allUrls, ROOT_FOLDER)
 
-	m_local := services.RetrieveMp3FilesPaths(ROOT_FOLDER)
-	m_device := services.RetrieveMp3FilesPaths(ROOT_DEVICE)
-	m_diff := services.GetDiffBetweenLocalAndDevice(m_local, m_device)
-	services.SyncFolders(m_diff, ROOT_FOLDER, ROOT_DEVICE)
+	if len(*dest) > 0 {
+		m_local := services.RetrieveMp3FilesPaths(ROOT_FOLDER)
+		m_device := services.RetrieveMp3FilesPaths(ROOT_DEVICE)
+		m_diff := services.GetDiffBetweenLocalAndDevice(m_local, m_device, *sync_folder)
+		services.SyncFolders(m_diff, ROOT_FOLDER, *sync_folder)
+	}
+
 }

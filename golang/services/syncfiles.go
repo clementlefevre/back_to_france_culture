@@ -37,12 +37,13 @@ func RetrieveMp3FilesPaths(path string) map[string][]string {
 	return m
 }
 
-func GetDiffBetweenLocalAndDevice(m_local map[string][]string, m_device map[string][]string) map[string][]string {
+func GetDiffBetweenLocalAndDevice(m_local map[string][]string, m_device map[string][]string, DEVICE_ROOT string) map[string][]string {
 	m_diff := make(map[string][]string) // initialize some storage for the diff
 
 	for dir := range m_local {
 		if _, ok := m_device[dir]; !ok { // check if the key from the first map exists in the second
 			m_diff[dir] = m_local[dir]
+			CreateFolder(filepath.Join(DEVICE_ROOT, dir))
 		} else {
 			m_diff[dir] = difference(m_local[dir], m_device[dir])
 		}
@@ -75,19 +76,19 @@ func difference(slice1 []string, slice2 []string) []string {
 func Copy(src, dst string) error {
 	in, err := os.Open(src)
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 	defer in.Close()
 
 	out, err := os.OpenFile(dst, os.O_CREATE|os.O_EXCL, os.ModeDir|0666)
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 	defer out.Close()
 
 	_, err = io.Copy(out, in)
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 	return out.Close()
 }
