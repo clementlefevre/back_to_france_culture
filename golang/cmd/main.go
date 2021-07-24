@@ -34,7 +34,7 @@ func main() {
 		}
 	}
 
-	//services.DownloadAndSaveToFileAll(allUrls, ROOT_FOLDER)
+	services.DownloadAndSaveToFileAll(allUrls, ROOT_FOLDER)
 
 	if len(*sync_folder) > 0 {
 		m_local := services.RetrieveMp3FilesPaths(ROOT_FOLDER)
