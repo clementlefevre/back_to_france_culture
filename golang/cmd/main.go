@@ -36,7 +36,7 @@ func main() {
 
 	//services.DownloadAndSaveToFileAll(allUrls, ROOT_FOLDER)
 
-	if len(*dest) > 0 {
+	if len(*sync_folder) > 0 {
 		m_local := services.RetrieveMp3FilesPaths(ROOT_FOLDER)
 		m_device := services.RetrieveMp3FilesPaths(ROOT_DEVICE)
 		m_diff := services.GetDiffBetweenLocalAndDevice(m_local, m_device, *sync_folder)
